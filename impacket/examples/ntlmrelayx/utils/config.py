@@ -77,6 +77,13 @@ class NTLMRelayxConfig:
         # WebDAV options
         self.serve_image = False
 
+        # AD CS attack options
+        self.isADCSAttack = False
+        self.template = None
+
+    def setSMBChallenge(self, value):
+        self.SMBServerChallenge = value
+
     def setSMB2Support(self, value):
         self.smb2support = value
 
@@ -172,3 +179,9 @@ class NTLMRelayxConfig:
 
     def setWebDAVOptions(self, serve_image):
         self.serve_image = serve_image
+
+    def setADCSOptions(self, template):
+        self.template = template
+
+    def setIsADCSAttack(self, isADCSAttack):
+        self.isADCSAttack = isADCSAttack

@@ -7,13 +7,26 @@
 # HTTP Attack Class
 #
 # Authors:
+#  Alberto Solino (@agsolino)
+#  Dirk-jan Mollema (@_dirkjan) / Fox-IT (https://www.fox-it.com)
+#  Ex Android Dev (@ExAndroidDev)
+#
+# Description:
+#  HTTP protocol relay attack
+#
+# ToDo:
+#
+import re
+import base64
+from OpenSSL import crypto
+from impacket.examples.ntlmrelayx.attacks import ProtocolAttack
 
 PROTOCOL_ATTACK_CLASS = "HTTPAttack"
 # cache already attacked clients
 ELEVATED = []
 
 
-class HTTPAttack(ProtocolAttack):
+class HTTPAttack(ProtocolAttack, ADCSAttack):
     """
     This is the default HTTP attack. This attack only dumps the root page, though
     you can add any complex attack below. self.client is an instance of urrlib.session
