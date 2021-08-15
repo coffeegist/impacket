@@ -8,7 +8,12 @@
 #
 # Authors:
 
-class HTTPAttack(ProtocolAttack, ADCSAttack):
+PROTOCOL_ATTACK_CLASS = "HTTPAttack"
+# cache already attacked clients
+ELEVATED = []
+
+
+class HTTPAttack(ProtocolAttack):
     """
     This is the default HTTP attack. This attack only dumps the root page, though
     you can add any complex attack below. self.client is an instance of urrlib.session
