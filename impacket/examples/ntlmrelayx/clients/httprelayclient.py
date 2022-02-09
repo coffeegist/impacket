@@ -1,17 +1,18 @@
-# SECUREAUTH LABS. Copyright 2018 SecureAuth Corporation. All rights reserved.
+# Impacket - Collection of Python classes for working with network protocols.
 #
-# This software is provided under under a slightly modified version
+# SECUREAUTH LABS. Copyright (C) 2020 SecureAuth Corporation. All rights reserved.
+#
+# This software is provided under a slightly modified version
 # of the Apache Software License. See the accompanying LICENSE file
 # for more information.
 #
-# HTTP Protocol Client
+# Description:
+#   HTTP Protocol Client
+#   HTTP(s) client for relaying NTLMSSP authentication to webservers
 #
 # Author:
 #   Dirk-jan Mollema / Fox-IT (https://www.fox-it.com)
 #   Alberto Solino (@agsolino)
-#
-# Description:
-# HTTP(s) client for relaying NTLMSSP authentication to webservers
 #
 import re
 import ssl
@@ -68,7 +69,7 @@ class HTTPRelayClient(ProtocolClient):
                 return False
 
         #Negotiate auth
-        negotiate = base64.b64encode(negotiateMessage)
+        negotiate = base64.b64encode(negotiateMessage).decode("ascii")
         headers = {'Authorization':'NTLM %s' % negotiate}
         self.session.request('GET', self.path ,headers=headers)
         res = self.session.getresponse()
@@ -88,7 +89,7 @@ class HTTPRelayClient(ProtocolClient):
             token = respToken2['ResponseToken']
         else:
             token = authenticateMessageBlob
-        auth = base64.b64encode(token)
+        auth = base64.b64encode(token).decode("ascii")
         headers = {'Authorization':'NTLM %s' % auth}
         self.session.request('GET', self.path,headers=headers)
         res = self.session.getresponse()

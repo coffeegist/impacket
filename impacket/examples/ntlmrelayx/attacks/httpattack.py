@@ -20,11 +20,9 @@ import re
 import base64
 from OpenSSL import crypto
 from impacket.examples.ntlmrelayx.attacks import ProtocolAttack
+from impacket.examples.ntlmrelayx.attacks.httpattacks.adcsattack import ADCSAttack
 
 PROTOCOL_ATTACK_CLASS = "HTTPAttack"
-# cache already attacked clients
-ELEVATED = []
-
 
 class HTTPAttack(ProtocolAttack, ADCSAttack):
     """
